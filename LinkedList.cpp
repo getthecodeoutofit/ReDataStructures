@@ -108,11 +108,49 @@ class LL{
         cout << typeid(head->data).name()<<" ";
     }
 
-    void sort(){
+    void reverse(){
         Node<T> *prev=nullptr,*current=head,*next=nullptr;
-        
+        while(current!=nullptr){
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+    }
+
+    size_t size(){
+        size_t s;
+        for(Node<T> *temp = head;temp!=nullptr;temp = temp->next){
+            s++;
+        }
+        return s;
+    }
+
+    void sort(){
+        cout << "Sorting the linkedlist: ";
+        size_t count = size();
+        for(Node<T> *temp = head;temp!=nullptr;temp = temp->next){
+            for(size_t s = 0;s<count;s++){
+                Node<T>*temp1 = temp;
+                if(temp1->data > temp1->next->data){
+                    T t = temp1->data;
+                    temp1->data = temp1->next->data;
+                    temp1->next->data = t;
+                }
+                temp1 = temp1->next;  
+        }
+        }
+    }
+
+    int search(int data){
+        // int s = size();
+        int f;
+        return f;
+
 
     }
+
     
 
 };
@@ -121,10 +159,10 @@ int main(){
     int choice;
     bool a = true;
     LL<int> *List = new LL<int>() ;
-    cout << "1 - Insertion\t\t2 - Front Insertion:\t\t3 - pop:\n4 - deletionByElement:\t\t5 - deletion By Place\t\t6 - Display Items: \n";
+    cout << "1 - Insertion\t\t\t2 - Front Insertion:\t\t\t3 - pop:\n4 - deletionByElement:\t\t5 - deletion By Place\t\t\t6 - Display Items: \n7 - Reverse\t\t\t8 - Sort The Element:\t\t\t9 - size:\n10 - Search and Item:\n";
     while (a)
     {
-    cout << "Enter Your choice: ";
+    cout << "\nEnter Your choice: ";
     cin >> choice;
         switch(choice){
             case 1:int data;
@@ -132,14 +170,14 @@ int main(){
             cin >> data;
             List->push(data);
             break;
-            case 2:int data;
+            case 2:
             cout << "Enter the data: ";
             cin >> data;
             List->insertFront(data);
             break;
             case 3:List->pop();
             break;
-            case 4:int data;
+            case 4:
             cout << "Enter the element to delete: ";
             cin >> data;
             bool ch;
@@ -151,11 +189,25 @@ int main(){
             break;
             case 6:List->traverse();
             break;
-            case 7:
+            case 7:List->reverse();
             break;
-            case 15:a = false;
+            case 8:List->sort();
             break;
-            default:cout << "Enter valid choice: ";
+            case 9:int size;
+            size =  List->size();
+            cout << "The size of LInked List is: "<< size<<"\n";
+            break;
+            case 15:int sure;
+            cout << "Are your Sure to Exit: ";
+            cin >> sure;
+            if(sure){
+            a = false;
+            }
+            else{
+                break;
+            }
+            break;
+            default:cout << "Enter valid choice: \n";
             break;
         }
     }
