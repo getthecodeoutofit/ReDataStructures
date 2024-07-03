@@ -102,6 +102,14 @@ class LL{
     void deleteElement(int place){
         Node<T> *temp = head;
         Node<T> *del;
+        if(place == 1){
+            del = head;
+            head = head->next;
+        }
+
+        for(int i=1;i<place-1;i++){
+            temp = temp->next;
+        }
     }
 
     void CheckType(){
@@ -147,8 +155,6 @@ class LL{
         // int s = size();
         int f;
         return f;
-
-
     }
 
     

@@ -2,7 +2,7 @@
 #include<math.h>
 using namespace std;
 
-bool jumpSearch(){
+bool jumpSearch(int *a,int size){
     
 }
 
