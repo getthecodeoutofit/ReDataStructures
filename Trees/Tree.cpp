@@ -30,6 +30,32 @@ void newInorder(vector<T> &v,Node<T>*root){
 }
 
 template<typename T>
+void BFS(Node<T>* root){
+    queue<Node<T>*> q;
+    q.push(root);
+    while(!q.empty()){
+        int size = q.size();
+        vector<T> v;
+        for(int i=0;i<size;i++){
+        Node<T>* temp = q.front();
+        if(temp->left!=nullptr){
+            q.push(temp->left);
+        }
+        if(temp->right != nullptr){
+            q.push(temp->right);
+        }
+        v.push_back(temp->data);
+        q.pop();
+        }
+        for(auto i:v){
+            cout << i <<" ";
+        }
+        cout << "\n";
+    }
+
+}
+
+template<typename T>
 class BSTTree{
     private:
     Node<T> *root;
@@ -87,6 +113,12 @@ class BSTTree{
         cout << "\n";
 
     }
+
+    void levelOrder(){
+        BFS(root);
+        cout << "\n";
+    }
+
     int height(){
         int height = checkH(root);
         return height;
@@ -105,6 +137,7 @@ int main(){
     t->Insert(18);
     t->Insert(17);
     t->Inorder();
+    t->levelOrder();
 
     return 0;
 
